@@ -156,6 +156,7 @@ const NavBar = () => {
         },
         {
           headers: { Authorization: `Bearer ${token}` },
+          withCredentials: true
         }
       );
       setPosts((prev) => [...prev, postDataSending.data]);
