@@ -250,21 +250,21 @@ const NavBar = () => {
 
             {/* Desktop Menu */}
             <nav className="hidden md:flex items-center gap-6 text-white font-medium">
-              <Link to="/prompt" className="hover:bg-[#2ced0f] bg-[#1dda00] px-4 py-2 rounded-[10px] flex items-center gap-2 shadow-md">
+              <Link to="/prompt" className=" px-4 py-2 rounded-[10px] flex items-center gap-2 shadow-md text-white">
                <PiNewspaperFill size={20}/> Prompt
               </Link>
-              <Link to="/myPosts" className="hover:bg-rose-500 bg-rose-600 px-4 py-2 rounded-[10px] flex items-center gap-2 shadow-md ">
+              <Link to="/myPosts" className="text-white px-4 py-2 rounded-[10px] flex items-center gap-2 shadow-md ">
                <LuPenLine size={20}/> My Posts
               </Link>
               <button
                 onClick={handelPostClick}
-                className="flex items-center gap-2 px-5 py-2 bg-[#00fc00] hover:bg-[#09e409] rounded-[8px] shadow-md cursor-pointer text-[#0037ff] " 
+                className="flex items-center gap-2 px-5 py-2 rounded-[8px] shadow-md cursor-pointer text-white " 
               >
                 <MdOutlinePostAdd size={20} /> Post
               </button>
               <Link
                 to="/contactUs"
-                className="flex items-center gap-2 px-3 py-2 bg-blue-700 hover:bg-blue-800 rounded-[8px] shadow-md cursor-pointer"
+                className="flex items-center gap-2 px-3 py-2 text-white rounded-[8px] shadow-md cursor-pointer"
               >
                 <VscFeedback size={16} /> Contact us
               </Link>
@@ -305,24 +305,24 @@ const NavBar = () => {
             </button>
             <Link
               to="/prompt"
-              className="hover:bg-[#2ced0f] bg-[#1dda00] px-4 py-2 rounded-[8px] text-white flex items-center gap-2 shadow-md font-medium">
+              className=" px-4 py-2 rounded-[8px] text-white flex items-center gap-2 shadow-md font-medium">
                 <PiNewspaperFill size={20}/> Prompt
             </Link>
             <Link
               to="/myPosts"
-              className="text-white hover:bg-rose-700 bg-rose-600 flex items-center gap-2 px-4 py-2 rounded-[8px]"
+              className="text-white flex items-center gap-2 px-4 py-2 rounded-[8px]"
             >
               <LuPenLine size={20}/> My Posts
             </Link>
             <button
               onClick={handelPostClick}
-             className="flex items-center gap-2 px-4 py-2 bg-[#00fc00] hover:bg-[#09e409] rounded-[8px] shadow-md cursor-pointer text-[#0037ff] font-bold"
+             className="flex items-center gap-2 px-4 py-2 rounded-[8px] shadow-md cursor-pointer text-white font-bold"
             >
               <MdOutlinePostAdd size={20} /> Post
             </button>
             <Link
               to="/contactUs"
-              className="flex items-center gap-2 px-3 py-2 bg-blue-700 hover:bg-blue-800 rounded-[8px] shadow-md text-white cursor-pointer"
+              className="flex items-center gap-2 px-3 py-2 rounded-[8px] shadow-md text-white cursor-pointer"
             >
               <VscFeedback size={16} /> Contact us
             </Link>
