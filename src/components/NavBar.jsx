@@ -243,35 +243,35 @@ const NavBar = () => {
   return (
     <>
       <div>
-        <div className=" bg-blue-500 h-30 md:h-23 w-full px-8 py-5  static">
+        <div className=" bg-[#151b34] h-30 md:h-23 w-full px-8 py-5  static">
           <div className="flex justify-between items-center px-6 py-4 md:py-3">
             {/* Logo */}
             <h1 className="text-3xl font-bold text-white">Capncut.io</h1>
 
             {/* Desktop Menu */}
             <nav className="hidden md:flex items-center gap-6 text-white font-medium">
-              <Link to="/prompt" className=" px-4 py-2 rounded-[10px] flex items-center gap-2 shadow-md text-white">
+              <Link to="/prompt" className=" px-4 py-2 rounded-[10px] flex items-center gap-2 text-white">
                <PiNewspaperFill size={20}/> Prompt
               </Link>
-              <Link to="/myPosts" className="text-white px-4 py-2 rounded-[10px] flex items-center gap-2 shadow-md ">
+              <Link to="/myPosts" className="text-white px-4 py-2 rounded-[10px] flex items-center gap-2  ">
                <LuPenLine size={20}/> My Posts
               </Link>
               <button
                 onClick={handelPostClick}
-                className="flex items-center gap-2 px-5 py-2 rounded-[8px] shadow-md cursor-pointer text-white " 
+                className="flex items-center gap-2 px-5 py-2 rounded-[8px]  cursor-pointer text-white " 
               >
                 <MdOutlinePostAdd size={20} /> Post
               </button>
               <Link
                 to="/contactUs"
-                className="flex items-center gap-2 px-3 py-2 text-white rounded-[8px] shadow-md cursor-pointer"
+                className="flex items-center gap-2 px-3 py-2 text-white rounded-[8px]  cursor-pointer"
               >
                 <VscFeedback size={16} /> Contact us
               </Link>
               {logout && (
                 <button
                   onClick={handelLogout}
-                  className="flex items-center gap-2 px-3 py-2 bg-red-600 hover:bg-red-700 rounded-[8px] shadow-md cursor-pointer"
+                  className="flex items-center gap-2 px-3 py-2 bg-red-600 hover:bg-red-700 rounded-[8px]  cursor-pointer"
                 >
                   <CgProfile size={20} /> Logout
                 </button>
