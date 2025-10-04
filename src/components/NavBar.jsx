@@ -305,7 +305,7 @@ const NavBar = () => {
             </button>
             <Link
               to="/prompt"
-              className=" px-4 py-2 rounded-[8px] text-white flex items-center gap-2 shadow-md font-medium">
+              className=" px-4 py-2 rounded-[8px] text-white flex items-center gap-2  font-medium">
                 <PiNewspaperFill size={20}/> Prompt
             </Link>
             <Link
@@ -316,20 +316,20 @@ const NavBar = () => {
             </Link>
             <button
               onClick={handelPostClick}
-             className="flex items-center gap-2 px-4 py-2 rounded-[8px] shadow-md cursor-pointer text-white font-bold"
+             className="flex items-center gap-2 px-4 py-2 rounded-[8px]  cursor-pointer text-white font-bold"
             >
               <MdOutlinePostAdd size={20} /> Post
             </button>
             <Link
               to="/contactUs"
-              className="flex items-center gap-2 px-3 py-2 rounded-[8px] shadow-md text-white cursor-pointer"
+              className="flex items-center gap-2 px-3 py-2 rounded-[8px]  text-white cursor-pointer"
             >
               <VscFeedback size={16} /> Contact us
             </Link>
             {logout && (
               <button
                 onClick={handelLogout}
-                className="flex items-center gap-2 px-3 py-2 bg-red-600 hover:bg-red-700 rounded-[8px] shadow-md text-white cursor-pointer"
+                className="flex items-center gap-2 px-3 py-2 bg-red-600 hover:bg-red-700 rounded-[8px]  text-white cursor-pointer"
               >
                 <CgProfile size={20} /> Logout
               </button>
