@@ -21,6 +21,7 @@ import { IoMdAdd } from "react-icons/io";
 const NavBar = () => {
   // Navigating to Login page
   const navigate = useNavigate();
+  const backendUrl = `http://localhost:3000`;
   // formData Managing
   const [formdata, setFormData] = useState(false);
   const [ui, setUi] = useState(false);
@@ -35,7 +36,7 @@ const NavBar = () => {
   const [userId, setUserId] = useState(null);
   const [openReplies, setOpenReplies] = useState({});
   const [isOpen, setIsOpen] = useState(false);
-  const[loader,setLoader]=useState(false);
+  const [loader, setLoader] = useState(false);
   function managePostData(e) {
     const { name, value } = e.target;
     setUserData((prev) => ({
@@ -70,7 +71,7 @@ const NavBar = () => {
   }, []);
   async function getPostData(currentUserId) {
     try {
-      const res = await axios.get("https://capncut-backend-1.onrender.com/formData");
+      const res = await axios.get(`${backendUrl}/formData`);
 
       // map through posts and set likesCount + isLiked
       const postsWithLikes = res.data.map((post) => ({
@@ -108,7 +109,7 @@ const NavBar = () => {
     }
     try {
       const res = await axios.post(
-        `https://capncut-backend-1.onrender.com/reply/${postId}`,
+        `${backendUrl}/reply/${postId}`,
         { text: replyText[postId] },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -150,7 +151,7 @@ const NavBar = () => {
     // sending postData to the backend
     try {
       const postDataSending = await axios.post(
-        `https://capncut-backend-1.onrender.com/formData`,
+        `${backendUrl}/formData`,
         {
           title: userData.title,
           Description: userData.Description,
@@ -158,7 +159,7 @@ const NavBar = () => {
         },
         {
           headers: { Authorization: `Bearer ${token}` },
-          withCredentials: true
+          withCredentials: true,
         }
       );
       setPosts((prev) => [...prev, postDataSending.data]);
@@ -221,7 +222,7 @@ const NavBar = () => {
     }
     try {
       const res = await axios.post(
-        `https://capncut-backend-1.onrender.com/like/${postId}`,
+        `${backendUrl}/like/${postId}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -250,14 +251,29 @@ const NavBar = () => {
             {/* Logo */}
 
             <button
-              className="flex items-center gap-5 px-7 py-3 rounded-[10px] shadow-md border-b-3 border-b-white bg-[#7895E5] cursor-pointer"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              <GiHamburgerMenu className="text-white mt-1" size={25} />
-              <h1 className=" text-white text-2xl font-bold hidden sm:block">
-                Menu
-              </h1>
-            </button>
+  onClick={() => setIsOpen(!isOpen)}
+  className="
+    flex items-center justify-center sm:justify-start
+    gap-3 sm:gap-5
+    px-5 sm:px-7 py-2.5 sm:py-3
+    rounded-[10px]
+    bg-[#7895E5] cursor-pointer
+    shadow-md shadow-blue-900/30
+    border-b-[3px] border-b-white
+    transition-all duration-300
+    hover:bg-[#6783d9] active:scale-95
+    focus:outline-none focus:ring-2 focus:ring-sky-400
+  "
+>
+  <GiHamburgerMenu
+    className="text-white mt-0.5 sm:mt-1"
+    size={22}
+  />
+  <h1 className="text-white text-xl sm:text-2xl font-bold hidden sm:block">
+    Menu
+  </h1>
+</button>
+
 
             {/* Desktop Menu */}
             <nav className=" md:flex items-center gap-6 text-white font-medium">
@@ -268,12 +284,24 @@ const NavBar = () => {
                <LuPenLine size={20}/> My Posts
               </Link> */}
               <button
-                onClick={handelPostClick}
-                className="flex items-center gap-2 px-5 py-3 rounded-[10px] shadow-md border-b-3 bg-[#7895E5] cursor-pointer text-white text-2xl font-bold "
-              >
-                {/* <MdOutlinePostAdd size={20} /> */}
-                Submit
-              </button>
+  onClick={handelPostClick}
+  className="
+    flex items-center justify-center sm:justify-start
+    gap-2 sm:gap-3
+    px-5 sm:px-6 py-2.5 sm:py-3
+    rounded-[10px]
+    bg-[#7895E5]
+    text-white text-lg sm:text-xl md:text-2xl font-bold
+    shadow-md shadow-blue-900/30
+    border-b-[3px] border-b-white
+    transition-all duration-300
+    hover:bg-[#6783d9] active:scale-95
+    focus:outline-none focus:ring-2 focus:ring-sky-400 cursor-pointer
+  "
+>
+  Submit
+</button>
+
               {/* <Link
                 to="/contactUs"
                 className="flex items-center gap-2 px-3 py-2 text-white rounded-[8px]  cursor-pointer"
@@ -290,61 +318,92 @@ const NavBar = () => {
               )} */}
             </nav>
             <div
-              className={`fixed top-7 left-0 h-[90vh] w-[85vw] sm:w-[22vw] rounded-[30px] 
+  className={`
+    fixed top-5 left-0 
+    h-[90vh] sm:h-[92vh] 
+    w-[88vw] sm:w-[55vw] md:w-[30vw] lg:w-[22vw]
+    rounded-[25px] sm:rounded-[25px] md:rounded-[30px]
     bg-[#0f0f1a]
-    flex flex-col gap-6 transform transition-transform duration-300 ease-in-out p-8 border border-sky-300
-    ${isOpen ? "translate-x-0" : "-translate-x-full border-none"} z-50`}
-            >
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="p-1 cursor-pointer"
-              >
-                <IoMdClose size={25} className="text-gray-400" />
-              </button>
-              <div className="flex justify-between items-center mt-5 mb-1 ">
-                <h1 className="text-white font-bold text-[2rem] tracking-wide ">
-                  CapnCut Help
-                </h1>
-              </div>
-              <button
-                onClick={handelPostClick}
-                className="flex items-center gap-5 mt-3 px-6 py-4 mb-6 text-center bg-linear-to-r from-blue-500 to-purple-500 rounded-[12px] text-xl cursor-pointer text-white font-bold"
-              >
-                {/* <MdOutlinePostAdd size={20} /> */}
-                <IoMdAdd size={32} />
-                Ask For Help
-              </button>
-              <Link
-                to="/prompt"
-                className=" px-4 py-2 rounded-[8px] text-white flex items-center gap-2 text-[18px]  font-bold"
-              >
-                <PiNewspaperFill size={20} />
-                Prompt
-              </Link>
-              <Link
-                to="/myPosts"
-                className="text-white flex items-center gap-2 px-4 py-2 rounded-[8px] font-bold text-[18px] "
-              >
-                <LuPenLine size={20} />
-                My Posts
-              </Link>
+    flex flex-col gap-6
+    transform transition-transform duration-300 ease-in-out
+    p-6 sm:p-8
+    border border-sky-400/60
+    z-50
+    ${isOpen ? "translate-x-0" : "-translate-x-full border-none"}
+  `}
+>
+  {/* Close Button */}
+  <button
+    onClick={() => setIsOpen(!isOpen)}
+    className="self-end text-gray-400 hover:text-white transition"
+  >
+    <IoMdClose size={28} />
+  </button>
 
-              <Link
-                to="/contactUs"
-                className="flex items-center gap-2 px-3 py-2 rounded-[8px]  text-white cursor-pointer font-bold text-[18px] "
-              >
-                <VscFeedback size={16} />
-                Contact us
-              </Link>
-              {logout && (
-                <button
-                  onClick={handelLogout}
-                  className="flex items-center gap-2 px-3 py-4 bg-red-600 hover:bg-red-700 rounded-[8px] font-bold text-white text-[18px] cursor-pointer"
-                >
-                  <CgProfile size={20} /> Logout
-                </button>
-              )}
-            </div>
+  {/* Title */}
+  <div className="flex justify-between items-center mt-3 mb-2">
+    <h1 className="text-white font-bold text-2xl sm:text-[2rem] tracking-wide">
+      CapnCut Help
+    </h1>
+  </div>
+
+  {/* Ask for Help Button */}
+  <button
+    onClick={handelPostClick}
+    className="
+      flex items-center justify-center sm:justify-start gap-3 sm:gap-5
+      mt-2 px-5 sm:px-6 py-3 sm:py-4 mb-4
+      bg-gradient-to-r from-blue-500 to-purple-500
+      rounded-[10px]
+      text-lg sm:text-xl
+      text-white font-bold
+      cursor-pointer
+      shadow-md shadow-blue-900/30
+      transition-all duration-300 hover:scale-[1.02] active:scale-95
+    "
+  >
+    <IoMdAdd size={28} className="sm:size-[32]" />
+    <span className="sm:block">Ask For Help</span>
+  </button>
+
+  {/* Links */}
+  <Link
+    to="/prompt"
+    className="flex items-center gap-3 px-3 py-2 sm:px-4 sm:py-3 text-white text-base sm:text-[18px] font-bold rounded-[8px] hover:bg-[#1a1a26] transition"
+  >
+    <PiNewspaperFill size={22} /> Prompt
+  </Link>
+
+  <Link
+    to="/myPosts"
+    className="flex items-center gap-3 px-3 py-2 sm:px-4 sm:py-3 text-white text-base sm:text-[18px] font-bold rounded-[8px] hover:bg-[#1a1a26] transition"
+  >
+    <LuPenLine size={22} /> My Posts
+  </Link>
+
+  <Link
+    to="/contactUs"
+    className="flex items-center gap-3 px-3 py-2 sm:px-4 sm:py-3 text-white text-base sm:text-[18px] font-bold rounded-[8px] hover:bg-[#1a1a26] transition"
+  >
+    <VscFeedback size={20} /> Contact Us
+  </Link>
+
+  {logout && (
+    <button
+      onClick={handelLogout}
+      className="
+        flex items-center gap-3 px-3 py-3 sm:px-4 sm:py-4
+        bg-red-600 hover:bg-red-700
+        rounded-[8px] text-white text-base sm:text-[18px]
+        font-bold mt-3
+        transition active:scale-95
+      "
+    >
+      <CgProfile size={22} /> Logout
+    </button>
+  )}
+</div>
+
             {/* mobile only */}
             {/* Hamburger - Mobile only */}
             {/* <button
@@ -555,17 +614,24 @@ const NavBar = () => {
         </div>
         {/* // content section */}
         <div className="bg-[#101014] w-full min-h-screen">
-          <div className="flex flex-col items-center py-12 px-4 text-center">
-            <div className="flex gap-3">
-              <IoIosTrendingUp size={45} className="mt-1  text-[#7895E5]" />
-              <h1 className="text-white text-4xl md:text-5xl font-semibold mb-3">
-                Trending This Week
-              </h1>
-            </div>
-            <h2 className="text-gray-600 font-medium text-[16.5px] md:text-[20px]">
-              Popular effects everyone's asking about
-            </h2>
-          </div>
+         <div className="flex flex-col items-center justify-center py-10 sm:py-12 px-4 sm:px-6 md:px-10 text-center">
+  {/* Icon + Title */}
+  <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+    <IoIosTrendingUp
+      size={38}
+      className="text-[#7895E5] sm:size-[45px] md:size-[55px]"
+    />
+    <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight">
+      Trending This Week
+    </h1>
+  </div>
+
+  {/* Subtitle */}
+  <h2 className="text-gray-400 font-medium text-base sm:text-[17px] md:text-[20px] max-w-[90%] sm:max-w-[70%] md:max-w-[60%]">
+    Popular effects everyone's asking about
+  </h2>
+</div>
+
 
           <div className="flex gap-4 overflow-x-auto px-4 sm:px-6 py-3 scrollbar-hide">
             {[
