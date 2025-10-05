@@ -21,7 +21,7 @@ import { IoMdAdd } from "react-icons/io";
 const NavBar = () => {
   // Navigating to Login page
   const navigate = useNavigate();
-  const backendUrl = `http://localhost:3000`;
+  const backendUrl = `https://capncut-backend-1.onrender.com`;
   // formData Managing
   const [formdata, setFormData] = useState(false);
   const [ui, setUi] = useState(false);
